@@ -1,0 +1,23 @@
+import PyPDF2 #Version: 3.0.1
+
+def rotate_pdf(input_pdf_path, output_pdf_path):
+    # Open the input PDF
+    with open(input_pdf_path, 'rb') as input_file:
+        reader = PyPDF2.PdfReader(input_file)
+        writer = PyPDF2.PdfWriter()
+
+        # Rotate each page
+        for i in range(len(reader. pages)):
+            page = reader.pages[i]
+            page.rotate(-90)  # Rotate page by 90 degrees anticlockwise
+            # page.rotate(90)  # Rotate page by 90 degrees clockwise
+            writer.add_page(page)
+
+        # Write the rotated pages to the output PDF
+        with open(output_pdf_path, 'wb') as output_file:
+            writer.write(output_file)
+
+# Example usage
+input_pdf_path = r"input_file.pdf"
+output_pdf_path = r"output_file.pdf"
+rotate_pdf(input_pdf_path, output_pdf_path)
